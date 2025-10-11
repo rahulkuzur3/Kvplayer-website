@@ -3,371 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | KVPlayer</title>
+    <title>The KVPlayer Story | Features, Roadmap & Technology</title>
+    <meta name="description" content="Discover the complete story of KVPlayer: its core features, the powerful technology it's built on, and the exciting roadmap for its future.">
     
-    <!-- Google Fonts -->
+    <!-- Preconnect to required origins for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Animate on Scroll (AOS) Library CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- CSS STYLES EMBEDDED -->
+    <!-- Preload the background image for faster hero section rendering -->
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/rahulkuzur3/KVPlayer/master/KVPlayer/KVPlayer_Screenshot.PNG">
+    
+    <!-- Asynchronously load fonts and icons to prevent blocking page render -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    </noscript>
+
+    <!-- [CRITICAL CSS] - Minimum styles for an instant first paint -->
     <style>
-        :root {
-            --bg-dark: #0D1117;
-            --bg-medium: #161B22;
-            --border-color: #30363d;
-            --primary-accent: #58A6FF;
-            --secondary-accent: #1F6FEB;
-            --text-primary: #C9D1D9;
-            --text-secondary: #8B949E;
-            --font-family: 'Poppins', sans-serif;
-            --glass-bg: rgba(22, 27, 34, 0.6);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* --- Navigation Bar --- */
-        .navbar {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 0;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-accent);
-        }
-        
-        /* --- Buttons --- */
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background-color: transparent;
-            border: 1px solid var(--primary-accent);
-            color: var(--primary-accent);
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-accent);
-            color: var(--bg-dark);
-        }
-        
-        .btn-cta {
-            background-color: var(--primary-accent);
-            color: var(--bg-dark);
-            font-size: 1.1rem;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
-        }
-        .btn-cta:hover {
-            background-color: var(--secondary-accent);
-            transform: translateY(-3px);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 1)), url('https://raw.githubusercontent.com/rahulkuzur3/KVPlayer/master/KVPlayer/KVPlayer_Screenshot.PNG') center center/cover no-repeat;
-            padding-top: 60px; /* Offset for fixed navbar */
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--primary-accent), #a371f7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- General Section Styling --- */
-        .content-section, .content-section-dark, .cta-section {
-            padding: 6rem 0;
-        }
-        .content-section-dark {
-            background-color: var(--bg-medium);
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 4rem;
-            color: var(--text-primary);
-        }
-
-        /* --- Timeline Section --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1.5px;
-        }
-
-        .timeline-item {
-            padding: 1rem 3rem;
-            position: relative;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 50px;
-        }
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 50px;
-        }
-
-        .timeline-dot {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background-color: var(--bg-dark);
-            border: 3px solid var(--primary-accent);
-            top: 28px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -8px;
-        }
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -8px;
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: var(--primary-accent);
-        }
-
-        .timeline-content {
-            padding: 20px;
-            background: var(--bg-medium);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .timeline-content h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Philosophy Section --- */
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .philosophy-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(5px);
-            padding: 2.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .philosophy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .philosophy-icon {
-            font-size: 2.5rem;
-            color: var(--primary-accent);
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- Team Section --- */
-        .team-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-        .team-member-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 500px;
-        }
-
-        .team-member-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            border: 5px solid var(--primary-accent);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
-        }
-
-        .team-member-info h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-        .team-role {
-            color: var(--primary-accent);
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-        .team-bio {
-            color: var(--text-secondary);
-        }
-        .team-social-links {
-            margin-top: 1.5rem;
-        }
-        .team-social-links a {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            margin: 0 0.75rem;
-            transition: color 0.3s ease;
-        }
-        .team-social-links a:hover {
-            color: var(--primary-accent);
-        }
-
-        /* --- CTA Section --- */
-        .cta-section {
-            text-align: center;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .cta-content p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        /* --- Footer --- */
-        .footer {
-            background: var(--bg-medium);
-            padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-        }
-        .footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .footer p {
-            color: var(--text-secondary);
-        }
-        .footer-social a {
-            color: var(--text-secondary);
-            margin-left: 1rem;
-            transition: color 0.3s ease;
-            font-size: 1.2rem;
-        }
-        .footer-social a:hover {
-            color: var(--primary-accent);
-        }
-
-        /* --- Responsive Design --- */
-        @media(max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-item:nth-child(even) { left: 0; }
-            .timeline-dot { left: 23px; }
-            .nav-links { display: none; }
-            .footer .container {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
+        :root{--bg-dark:#0D1117;--bg-surface:#161B22;--border-color:#30363d;--accent-primary:#3882F6;--text-primary:#E6EDF3;--text-secondary:#8B949E;--font-family:'Inter',sans-serif}
+        *,:after,:before{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-family);background-color:var(--bg-dark);color:var(--text-primary);line-height:1.7;overflow-x:hidden}
+        body.no-scroll{overflow:hidden}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+        .navbar{background:rgba(13,17,23,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-color);padding:1rem 0;position:fixed;width:100%;z-index:1000;top:0;transition:background-color .3s ease}
+        .navbar .container{display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.5rem;font-weight:700;color:var(--text-primary);text-decoration:none}
+        .nav-links-desktop{list-style:none;display:flex;align-items:center;gap:2rem}
+        .nav-links-desktop a{color:var(--text-secondary);text-decoration:none;font-weight:600;transition:color .3s ease}
+        .nav-links-desktop a:hover{color:var(--accent-primary)}
+        .hamburger{display:none;cursor:pointer;z-index:1001;background:0 0;border:0;padding:0}
+        .bar{display:block;width:25px;height:3px;margin:5px 0;background-color:var(--text-primary);transition:all .3s ease-in-out}
+        .btn{padding:.7rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;transition:all .3s ease;display:inline-block;border:1px solid transparent}
+        .btn-primary{background-color:transparent;border-color:var(--accent-primary);color:var(--accent-primary)}
+        .btn-primary:hover{background-color:var(--accent-primary);color:var(--bg-dark)}
+        .hero{height:70vh;min-height:500px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(13,17,23,0.8),var(--bg-dark)),url('https://raw.githubusercontent.com/rahulkuzur3/KVPlayer/master/KVPlayer/KVPlayer_Screenshot.PNG') center center/cover no-repeat;padding-top:60px}
+        .hero-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;margin-bottom:1rem;color:var(--text-primary);letter-spacing:-1.5px}
+        .hero-subtitle{font-size:1.2rem;color:var(--text-secondary);max-width:600px;margin:0 auto}
+        @media(max-width:768px){.nav-links-desktop{display:none}.hamburger{display:block}}
     </style>
 </head>
 <body>
@@ -375,117 +54,111 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">KVPlayer</a>
-            <ul class="nav-links">
-                <li><a href="#our-story">Our Story</a></li>
-                <li><a href="#our-philosophy">Philosophy</a></li>
-                <li><a href="#meet-the-team">Creator</a></li>
-                <li><a href="https://github.com/rahulkuzur3/KVPlayer/releases" class="btn btn-primary">Download</a></li>
+            <ul class="nav-links-desktop">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tech-stack">Technology</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="https://github.com/rahulkuzur3/KVPlayer/releases" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download</a></li>
             </ul>
+            <button class="hamburger" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </nav>
+    
+    <!-- Mobile Navigation -->
+    <div class="nav-overlay">
+        <ul class="nav-links-mobile">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tech-stack">Technology</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="https://github.com/rahulkuzur3/KVPlayer/releases" target="_blank" rel="noopener noreferrer">Download</a></li>
+        </ul>
+    </div>
 
     <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Powerful Simplicity in Media Playback.</h1>
-            <p class="hero-subtitle">Discover the story and motivation behind KVPlayer, a modern media player for Windows.</p>
+            <h1 class="hero-title">Crafted with Purpose.</h1>
+            <p class="hero-subtitle">Discover the story, technology, and vision behind KVPlayer—a media player built for performance and simplicity.</p>
         </div>
     </header>
 
     <main>
-        <section id="our-story" class="content-section">
+        <section id="features" class="content-section">
             <div class="container">
-                <h2 class="section-title">Our Journey</h2>
+                <h2 class="section-title" data-aos="fade-up">Core Features</h2>
+                <div class="feature-grid">
+                    <div class="pro-card" data-aos="fade-up"><div class="card-content"><div class="feature-icon"><i class="fas fa-desktop"></i></div><h3>Sleek, Minimalist Interface</h3><p>A modern, dark-themed UI that gets out of your way. Controls are auto-hiding and appear only when needed.</p></div></div>
+                    <div class="pro-card" data-aos="fade-up" data-aos-delay="100"><div class="card-content"><div class="feature-icon"><i class="fas fa-rocket"></i></div><h3>High-Performance Playback</h3><p>Utilizes hardware acceleration and fast seeking for smooth playback and instantaneous skipping through any media file.</p></div></div>
+                    <div class="pro-card" data-aos="fade-up" data-aos-delay="200"><div class="card-content"><div class="feature-icon"><i class="fas fa-layer-group"></i></div><h3>Truly Cross-Platform</h3><p>Runs natively on Windows, macOS, and Linux from a single, modern codebase, ensuring a consistent experience everywhere.</p></div></div>
+                    <div class="pro-card" data-aos="fade-up" data-aos-delay="300"><div class="card-content"><div class="feature-icon"><i class="fas fa-volume-high"></i></div><h3>Multi-Audio Track Support</h3><p>Automatically detects and allows you to switch between multiple audio tracks in your video files with a single click.</p></div></div>
+                    <div class="pro-card" data-aos="fade-up" data-aos-delay="400"><div class="card-content"><div class="feature-icon"><i class="fas fa-sliders"></i></div><h3>Full Playback Control</h3><p>Responsive seek bar, 10-second skips, volume control, mute, and a seamless fullscreen mode give you total command.</p></div></div>
+                    <div class="pro-card" data-aos="fade-up" data-aos-delay="500"><div class="card-content"><div class="feature-icon"><i class="fas fa-hand-pointer"></i></div><h3>Versatile File Handling</h3><p>Drag-and-drop files directly onto the player, or use the "Open File" dialog on the welcome screen or during playback.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="content-section-dark">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Built with Powerful Technology</h2>
+                <div class="tech-grid">
+                    <div class="tech-logos" data-aos="fade-right">
+                        <div class="tech-logo-item"><i class="fab fa-python"></i><span>Python</span></div>
+                        <div class="tech-logo-item"><i class="fas fa-mobile-alt"></i><span>Kivy</span></div>
+                        <div class="tech-logo-item"><i class="fas fa-film"></i><span>FFpyplayer</span></div>
+                    </div>
+                    <div class="tech-description" data-aos="fade-left">
+                        <h3>Python + Kivy + FFpyplayer</h3>
+                        <p>KVPlayer is built on a modern and powerful stack. **Python** provides a robust and flexible foundation, while the **Kivy** framework allows us to create a sleek, hardware-accelerated user interface that runs natively on Windows, macOS, and Linux from a single codebase.</p>
+                        <p>At its core, **FFpyplayer** serves as a high-performance bridge to the industry-standard **FFmpeg** multimedia library, enabling flawless playback of virtually any format with minimal resource usage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="content-section">
+            <div class="container">
+                <h2 class="section-title">The Journey So Far</h2>
                 <div class="timeline">
-                    <!-- Timeline Item 1 -->
-                    <div class="timeline-item" data-aos="fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2025</div>
-                        <div class="timeline-content">
-                            <h3>The Project Begins</h3>
-                            <p>The first lines of code were committed, marking the beginning of a journey to create a clean, modern, and efficient media player for the Windows desktop environment using C# and .NET.</p>
-                        </div>
-                    </div>
-                    <!-- Timeline Item 2 -->
-                    <div class="timeline-item" data-aos="fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">Development</div>
-                        <div class="timeline-content">
-                            <h3>Core Features & Design</h3>
-                            <p>Development focused on building a robust foundation, implementing essential features like playlist management, format support, and crafting a sleek, user-friendly interface.</p>
-                        </div>
-                    </div>
-                    <!-- Timeline Item 3 -->
-                    <div class="timeline-item" data-aos="fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">Open Source</div>
-                        <div class="timeline-content">
-                            <h3>Sharing with the World</h3>
-                            <p>KVPlayer was made open-source, allowing the community to learn from the code, contribute, and be part of its growth. The goal was to create a player built for users, by users.</p>
-                        </div>
-                    </div>
-                     <!-- Timeline Item 4 -->
-                     <div class="timeline-item" data-aos="fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">Today</div>
-                        <div class="timeline-content">
-                            <h3>Continuous Refinement</h3>
-                            <p>The project continues to evolve, focusing on stability, performance enhancements, and incorporating user feedback to make KVPlayer the go-to media experience on Windows.</p>
-                        </div>
-                    </div>
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">2025</div><div class="timeline-content"><h3>The Project Begins</h3><p>The first lines of code were written, starting a journey to create a clean, modern, and efficient media player for Windows.</p></div></div>
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">Development</div><div class="timeline-content"><h3>Core Features & Design</h3><p>Focus shifted to a robust foundation, implementing playlist management, broad format support, and crafting a sleek, user-friendly interface.</p></div></div>
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">Open Source</div><div class="timeline-content"><h3>Sharing with the World</h3><p>KVPlayer was made open-source to allow the community to learn, contribute, and be part of its growth. The goal: a player built for users, by users.</p></div></div>
                 </div>
             </div>
         </section>
-
-        <section id="our-philosophy" class="content-section-dark">
+        
+        <section id="roadmap" class="content-section-dark">
             <div class="container">
-                <h2 class="section-title">Our Philosophy</h2>
-                <div class="philosophy-grid">
-                    <div class="philosophy-card" data-aos="fade-right">
-                        <div class="philosophy-icon"><i class="fas fa-bolt"></i></div>
-                        <h3>Performance First</h3>
-                        <p>KVPlayer is engineered to be lightweight and responsive. It provides a smooth, high-definition playback experience without demanding excessive system resources.</p>
-                    </div>
-                    <div class="philosophy-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="philosophy-icon"><i class="fas fa-magic"></i></div>
-                        <h3>Simplicity in Design</h3>
-                        <p>We believe a powerful media player doesn't need a complicated interface. KVPlayer focuses on a clean, intuitive, and enjoyable user experience for everyone.</p>
-                    </div>
-                    <div class="philosophy-card" data-aos="fade-left" data-aos-delay="400">
-                        <div class="philosophy-icon"><i class="fab fa-github"></i></div>
-                        <h3>Open & Collaborative</h3>
-                        <p>As an open-source project, transparency and community are key. We encourage feedback and contributions to guide the future development of KVPlayer.</p>
-                    </div>
+                <h2 class="section-title">What's Next: The Roadmap</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">Q3 2025</div><div class="timeline-content"><h3>Performance & Codec Update</h3><p>Focus on optimizing the rendering engine, improving performance on older hardware, and expanding support for next-gen codecs like AV1.</p></div></div>
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">Q4 2025</div><div class="timeline-content"><h3>Cross-Platform Support</h3><p>Begin development for native Linux and macOS versions, bringing the KVPlayer experience to a wider audience of users and developers.</p></div></div>
+                    <div class="timeline-item" data-aos="fade-up"><div class="timeline-dot"></div><div class="timeline-date">The Future</div><div class="timeline-content"><h3>The Next Generation</h3><p>Exploring features like theme customization, plugin support, and cloud media integration to create the ultimate media ecosystem.</p></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="meet-the-team" class="content-section">
+        <section id="meet-the-creator" class="content-section">
             <div class="container">
                 <h2 class="section-title">Meet the Creator</h2>
                 <div class="team-wrapper">
-                    <div class="team-member-card" data-aos="zoom-in">
+                    <div class="team-member-card" data-aos="zoom-in-up">
                         <div class="team-member-photo" style="background-image: url('profile-pic.webp');"></div>
                         <div class="team-member-info">
-                            <h3>Rahul Kuzur</h3>
-                            <p class="team-role">Founder & Developer</p>
+                            <h3>Rahul Kuzur</h3><p class="team-role">Founder & Developer</p>
                             <p class="team-bio">A passionate developer with a love for creating clean, functional, and user-friendly desktop applications. KVPlayer is a showcase of this dedication and a commitment to the open-source community.</p>
                             <div class="team-social-links">
-                                <a href="[Your LinkedIn URL]" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="[Your Twitter URL]" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="https://github.com/rahulkuzur3" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://github.com/rahulkuzur3" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta" class="cta-section">
-            <div class="container">
-                <div class="cta-content" data-aos="fade-up">
-                    <h2>Ready to Try KVPlayer?</h2>
-                    <p>Download the latest version from GitHub and experience your media like never before.</p>
-                    <a href="https://github.com/rahulkuzur3/KVPlayer/releases" class="btn btn-cta">View Releases <i class="fas fa-download"></i></a>
                 </div>
             </div>
         </section>
@@ -495,33 +168,101 @@
         <div class="container">
             <p>&copy; 2025 KVPlayer | An Open Source Project</p>
             <div class="footer-social">
-                 <a href="https://github.com/rahulkuzur3/KVPlayer" aria-label="GitHub Project"><i class="fab fa-github"></i></a>
-                 <a href="https://kvplayer.kuzur.uk" aria-label="Main Website"><i class="fas fa-globe"></i></a>
+                 <a href="https://github.com/rahulkuzur3/KVPlayer" target="_blank" rel="noopener noreferrer" aria-label="GitHub Project"><i class="fab fa-github"></i></a>
+                 <a href="#" aria-label="Main Website"><i class="fas fa-globe"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LIBRARIES AND SCRIPT EMBEDDED -->
-
-    <!-- Animate on Scroll (AOS) Library JS -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- [NON-CRITICAL CSS] - Loaded at the end of the body to not block rendering -->
+    <style>
+        .content-section{padding:6rem 0}
+        .content-section-dark{background-color:var(--bg-surface);padding:6rem 0}
+        .section-title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:4rem;color:var(--text-primary);letter-spacing:-1px}
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+        .pro-card{background:var(--bg-surface);padding:2.5rem;border-radius:10px;border:1px solid var(--border-color);text-align:center;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+        .pro-card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(56,130,246,0.15);border-color:var(--accent-primary)}
+        .feature-icon{font-size:2.5rem;color:var(--accent-primary);margin-bottom:1.5rem}
+        .pro-card h3{font-size:1.3rem;margin-bottom:.5rem;font-weight:600}
+        .pro-card p{color:var(--text-secondary);font-size:1rem}
+        .tech-grid{display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:4rem;max-width:1000px;margin:0 auto}
+        .tech-logos{display:flex;flex-direction:column;gap:1.5rem}
+        .tech-logo-item{display:flex;align-items:center;gap:1rem;background:var(--bg-dark);padding:1rem;border-radius:8px;border:1px solid var(--border-color)}
+        .tech-logo-item i{font-size:2rem;color:var(--accent-primary)}
+        .tech-logo-item span{font-size:1.2rem;font-weight:600}
+        .tech-description h3{font-size:1.8rem;font-weight:600;margin-bottom:1rem}
+        .tech-description p{color:var(--text-secondary)}
+        .tech-description p+p{margin-top:1rem}
+        .timeline{position:relative;max-width:800px;margin:0 auto}
+        .timeline::after{content:'';position:absolute;width:3px;background-color:var(--border-color);top:0;bottom:0;left:50%;margin-left:-1.5px}
+        .timeline-item{padding:1rem 3rem;position:relative;width:50%}
+        .timeline-item:nth-child(odd){left:0;padding-right:50px}
+        .timeline-item:nth-child(even){left:50%;padding-left:50px}
+        .timeline-dot{content:'';position:absolute;width:16px;height:16px;background-color:var(--bg-dark);border:3px solid var(--accent-primary);top:28px;border-radius:50%;z-index:1;box-shadow:0 0 15px var(--accent-primary)}
+        .timeline-item:nth-child(odd) .timeline-dot{right:-8px}
+        .timeline-item:nth-child(even) .timeline-dot{left:-8px}
+        .timeline-date{font-weight:600;color:var(--accent-primary)}
+        .timeline-content{padding:20px;background:var(--bg-surface);border-radius:8px;border:1px solid var(--border-color)}
+        .timeline-content h3{margin-bottom:.5rem}
+        .team-wrapper{display:flex;justify-content:center}
+        .team-member-card{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:500px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:12px;padding:3rem;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+        .team-member-card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(56,130,246,0.15);border-color:var(--accent-primary)}
+        .team-member-photo{width:180px;height:180px;border-radius:50%;background-size:cover;background-position:center;border:5px solid var(--accent-primary);margin-bottom:1.5rem;box-shadow:0 0 20px rgba(56,130,246,0.3)}
+        .team-member-info h3{font-size:1.8rem;font-weight:600}
+        .team-role{color:var(--accent-primary);font-weight:600;margin-bottom:1rem}
+        .team-bio{color:var(--text-secondary)}
+        .team-social-links{margin-top:1.5rem}
+        .team-social-links a{color:var(--text-secondary);font-size:1.5rem;margin:0 .75rem;transition:color .3s ease,transform .3s ease;display:inline-block}
+        .team-social-links a:hover{color:var(--accent-primary);transform:scale(1.2)}
+        .footer{background:var(--bg-surface);padding:2rem 0;border-top:1px solid var(--border-color)}
+        .footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+        .footer p{color:var(--text-secondary)}
+        .footer-social a{color:var(--text-secondary);margin-left:1rem;transition:color .3s ease;font-size:1.2rem}
+        .footer-social a:hover{color:var(--accent-primary)}
+        .nav-overlay{position:fixed;top:0;left:-100%;width:100%;height:100vh;background-color:rgba(13,17,23,.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:left .4s cubic-bezier(.77,0,.175,1);z-index:999}
+        .nav-overlay.active{left:0}
+        .nav-links-mobile{list-style:none;text-align:center}
+        .nav-links-mobile li{margin:2rem 0;transform:translateY(20px);opacity:0;transition:opacity .4s ease,transform .4s ease}
+        .nav-overlay.active li{transform:translateY(0);opacity:1}
+        .nav-overlay.active li:nth-child(1){transition-delay:.2s}
+        .nav-overlay.active li:nth-child(2){transition-delay:.3s}
+        .nav-overlay.active li:nth-child(3){transition-delay:.4s}
+        .nav-overlay.active li:nth-child(4){transition-delay:.5s}
+        .nav-links-mobile a{font-size:2rem;font-weight:700;color:var(--text-primary);text-decoration:none;transition:color .3s ease}
+        .hamburger.active .bar:nth-child(2){opacity:0}
+        .hamburger.active .bar:nth-child(1){transform:translateY(8px) rotate(45deg)}
+        .hamburger.active .bar:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+        [data-aos]{opacity:0;transition-property:transform,opacity;transition-timing-function:ease-out-cubic}
+        [data-aos=fade-up]{transform:translateY(50px)}
+        [data-aos=fade-right]{transform:translateX(-50px)}
+        [data-aos=fade-left]{transform:translateX(50px)}
+        [data-aos=zoom-in-up]{transform:translateY(50px) scale(.9)}
+        [data-aos].aos-animate{opacity:1;transform:translate(0,0) scale(1)}
+        @media(max-width:992px){.tech-grid{grid-template-columns:1fr;text-align:center}.tech-logos{flex-direction:row;justify-content:center;flex-wrap:wrap}}
+        @media(max-width:768px){.timeline::after{left:31px}.timeline-item{width:100%;padding-left:70px;padding-right:25px}.timeline-item:nth-child(even){left:0}.timeline-dot{left:23px}.footer .container{flex-direction:column;text-align:center}.feature-grid{grid-template-columns:1fr}}
+    </style>
+    
+    <!-- Deferred script for animations -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
     
     <script>
-        // Initialize AOS (Animate on Scroll) Library
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-        });
-
-        // Optional: Add a class to the navbar on scroll for a subtle background change
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.backgroundColor = 'rgba(13, 17, 23, 0.8)';
-            } else {
-                navbar.style.backgroundColor = 'var(--glass-bg)';
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector(".hamburger");
+            const navOverlay = document.querySelector(".nav-overlay");
+            const body = document.body;
+            function toggleMenu() {
+                hamburger.classList.toggle("active");
+                navOverlay.classList.toggle("active");
+                body.classList.toggle("no-scroll");
             }
+            hamburger.addEventListener("click", toggleMenu);
+            navOverlay.querySelectorAll("a").forEach(link => link.addEventListener("click", toggleMenu));
+
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({ duration: 800, once: true, offset: 50 });
+                }
+            }, 100);
         });
     </script>
 </body>
