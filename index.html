@@ -235,13 +235,13 @@
                 <div class="feature-grid download-grid">
                     
                     <!-- Windows -->
-                    <a href="https://github.com/rahulkuzur3/KVPlayer/releases/download/v1.0.1/KVPlayer_v1.0.1_Windows.exe" class="pro-card download-card" data-aos="zoom-in-up">
-                        <div class="card-content"><div class="feature-icon"><i class="fab fa-windows"></i></div><h3>Windows</h3><p>Version 1.0 | 64-bit Installer</p><span class="btn btn-primary">Download EXE</span></div>
-                    </a>
+                    <div class="pro-card download-card" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="card-content"><div class="feature-icon"><i class="fab fa-windows"></i></div><h3>Windows</h3><p>Installer 32 & 64 bit</p><a href="#" id="open-windows-modal" class="btn btn-primary">Download Now</a></div>
+                    </div>
 
                     <!-- Linux (Snap & Deb) -->
                     <div class="pro-card download-card" data-aos="zoom-in-up" data-aos-delay="100">
-                        <div class="card-content"><div class="feature-icon"><i class="fab fa-linux"></i></div><h3>Linux</h3><p>Snap Store & .deb Package</p><a href="#" id="open-linux-modal" class="btn btn-primary">Choose Version</a></div>
+                        <div class="card-content"><div class="feature-icon"><i class="fab fa-linux"></i></div><h3>Linux</h3><p>Snap Store & .deb Package</p><a href="#" id="open-linux-modal" class="btn btn-primary">Download Now</a></div>
                     </div>
 
                     <!-- FreeBSD (ADDED FOR SEO) -->
@@ -267,7 +267,7 @@
                 <h2 class="section-title" data-aos="fade-up">An Open Source Collaboration</h2>
                 <div class="pro-card project-info-card" data-aos="zoom-in-up">
                     <div class="project-links">
-                        <a href="https://kvplayer.site" target="_blank" rel="noopener noreferrer" class="project-link-item"><i class="fas fa-globe"></i><div class="link-text"><strong>Official Website</strong></div></a>
+                        <a href="https://kvplayer.kuzur.uk" target="_blank" rel="noopener noreferrer" class="project-link-item"><i class="fas fa-globe"></i><div class="link-text"><strong>Official Website</strong></div></a>
                         <a href="https://github.com/rahulkuzur3/KVPlayer" target="_blank" rel="noopener noreferrer" class="project-link-item"><i class="fab fa-github"></i><div class="link-text"><strong>Source Code</strong></div></a>
                         <a href="https://kuzur.uk" target="_blank" rel="noopener noreferrer" class="project-link-item"><i class="fas fa-user-circle"></i><div class="link-text"><strong>Developer</strong><span>Rahul Kuzur</span></div></a>
                         <div class="project-link-item non-clickable"><i class="fas fa-balance-scale"></i><div class="link-text"><strong>License</strong><span>MIT License (Free & Open Source)</span></div></div>
@@ -280,6 +280,20 @@
     <footer class="footer">
         <div class="container"><p>Crafted with ❤️ by Rahul Kuzur for the open-source community. &copy; 2025 KVPlayer.</p></div>
     </footer>
+    <!-- windows Download Modal (Optimized for exe/msi keywords) -->
+    <div id="windows-modal" class="modal-overlay">
+        <div class="modal-content pro-card" data-aos="zoom-in-up">
+            <button id="close-windows-modal" class="modal-close-btn">&times;</button>
+            <h3>Linux Distributions</h3>
+            <p class="modal-subtitle">Choose your preferred installation method:</p>
+            <div class="distro-options">
+                <a href="https://github.com/rahulkuzur3/KVPlayer/releases/download/v1.0.1/KVPlayer_1.0.1_Windows.exe" class="btn btn-primary"><i class="fas fa-microchip"></i> 64 bit</a>
+                <a href="#download" class="btn-disabled"><i class="fab fa-microsoft"></i> Microsoft Store </a>
+                 <a href="#download" class="btn-disabled"><i class="fas fa-microchip"></i> 32 bit</a>
+                <a href="#download" class="btn-disabled"><i class="fas fa-box"></i> MSI</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Linux Download Modal (Optimized for Snap/Deb keywords) -->
     <div id="linux-modal" class="modal-overlay">
@@ -290,10 +304,9 @@
             <div class="distro-options">
                 <a href="https://github.com/rahulkuzur3/KVPlayer/releases/download/v1.0.1/kvplayer_1.0.1_amd64.deb" class="btn btn-primary"><i class="fab fa-debian"></i> Download .deb</a>
                 <a href="https://snapcraft.io/kvplayer" class="btn btn-primary"><i class="fas fa-cube"></i> Install via Snap</a>
-                <a href="#download" class="btn-disabled"><i class="fab fa-redhat"></i> .rpm (Coming Soon)</a>
-                <a href="#download" class="btn-disabled"><i class="fas fa-box-open"></i> AppImage (Coming Soon)</a>
-                <a href="#download" class="btn-disabled"><i class="fas fa-boxes"></i> Flatpak (Coming Soon)</a>
-                <a href="#download" class="btn-disabled"><i class="fab fa-archlinux"></i> Arch AUR (Coming Soon)</a>
+                <a href="#download" class="btn-disabled"><i class="fab fa-redhat"></i> .rpm </a>
+                <a href="#download" class="btn-disabled"><i class="fas fa-box-open"></i> AppImage </a>
+                <a href="#download" class="btn-disabled"><i class="fas fa-boxes"></i> Flatpak </a>
             </div>
         </div>
     </div>
@@ -321,6 +334,7 @@
             const openModalBtn = document.getElementById('open-linux-modal');
             const closeModalBtn = document.getElementById('close-linux-modal');
             
+
             function openModal(e) {
                 e.preventDefault();
                 linuxModal.classList.add('active');
@@ -329,6 +343,7 @@
 
             function closeModal() {
                 linuxModal.classList.remove('active');
+                windowsModal.classList.remove('active');                
                 body.classList.remove('no-scroll');
             }
 
@@ -336,6 +351,34 @@
             if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
             if(linuxModal) linuxModal.addEventListener('click', (e) => {
                 if (e.target === linuxModal) closeModal();
+            });
+
+
+
+            // windows Modal 
+            const windowsModal = document.getElementById('windows-modal');
+            const open = document.getElementById('open-windows-modal');
+            const close = document.getElementById('close-windows-modal');
+
+            function openWindows(e) {
+                e.preventDefault();
+                windowsModal.classList.add('active');
+                body.classList.add('no-scroll');
+            }
+
+            function closeWindows() {
+                linuxModal.classList.remove('active');
+                windowsModal.classList.remove('active');                
+                body.classList.remove('no-scroll');
+            }
+
+
+
+
+            if(open) open.addEventListener('click', openWindows);
+            if(close) close.addEventListener('click', closeWindows);
+            if(windowsModal) windowsModal.addEventListener('click', (e) => {
+                if (e.target === windowsModal) closeWindows();
             });
         });
         
